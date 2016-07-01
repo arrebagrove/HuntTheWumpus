@@ -7,7 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
+        <ListView Header="Hunt the Wumpus" ItemsSource="{x:Bind Messages}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.Above="SendButton">
+            <ListView.ItemTemplate>
+                <DataTemplate xmlns:botMessages="using:Microsoft.Bot.Connector.DirectLine.Models" x:DataType="botMessages:Message">
+                    <TextBlock Text="{x:Bind Text}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel ItemsUpdatingScrollMode="KeepLastItemInView" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+        <TextBox x:Name="MessageToSendTextBox" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="SendButton" />
+        <Button x:Name="SendButton" Content="Send" Click="{x:Bind SendButton_Click}" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
+    </RelativePanel>
 </Page>

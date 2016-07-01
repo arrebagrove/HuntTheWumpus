@@ -28,6 +28,9 @@ namespace HuntTheWumpus
         /// </summary>
         public App()
         {
+            Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
+                Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
+                Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -42,7 +45,7 @@ namespace HuntTheWumpus
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                //this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
